@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+   <h:head>
+        <link href="css/style.css" rel="stylesheet" type="text/css"></link>
+        <title><h:outputText value="#{msg.title}"/></title>
+        <script name="jquery/jquery.js" library="primefaces"></script>
+    </h:head>
+
+    <h:body>    
+        <h:form>
+            <h:commandButton action="#{driverBean.changeLanguage('')}" value="English" image="resources/eeuu.png" />
+            <h:commandButton action="#{driverBean.changeLanguage('es')}" value="Español" image="resources/spain.png" />
+        </h:form>
+        <h:form prependId="false">
+            <h1>
+                <h:outputText value="#{msg['welcome']}" />
+            </h1>
+            <h:panelGrid columns="3">   
+                    
+                <p:outputLabel value="#{msg.firstName}" for="firstName" />
+                <p:inputText id="firstName" label="#{msg.firstName}" value="#{driverBean.firstName}" required="true">
+                    <f:attribute name="requiredMessage" value="#{msg.firstName_required}" />
+                </p:inputText>
+                <p:message for="firstName" styleClass="errormsg" />
+                
+                <p:outputLabel value="#{msg.lastName}" for="lastName" />
+                <p:inputText id="lastName" label="#{msg.lastName}" value="#{driverBean.lastName}" required="true">
+                    <f:attribute name="requiredMessage" value="#{msg.lastName_required}" />
+                </p:inputText>
+                <p:message for="lastName" styleClass="errormsg" />
+                
+                <p:outputLabel value="#{msg.idNumber}" for="IDNumber" />
+                <p:inputText id="IDNumber" label="#{msg.idNumber}" value="#{driverBean.IDNumber}" required="true">
+                    <f:attribute name="requiredMessage" value="#{msg.IDNumber_required}" />
+                </p:inputText>
+                <p:message for="IDNumber" styleClass="errormsg" />
+                
+                <p:outputLabel value="#{msg.birthDate}" for="birthDate" />
+                <p:calendar id="birthDate" label="#{msg.birthDate}" value="#{driverBean.birthDate}" pattern="dd/MM/yyyy" navigator="true" required="true">
+                    <f:attribute name="requiredMessage" value="#{msg.birthDate_required}" />
+                </p:calendar>
+                <p:message for="birthDate" styleClass="errormsg" />
+
+                <p:outputLabel value="#{msg.phone}" for="phone" />
+                <p:inputText id="phone" label="#{msg.phone}" value="#{driverBean.phone}" required="true" maxlength="15">
+                    <f:attribute name="requiredMessage" value="#{msg.phone_required}" />
+                </p:inputText>
+                <p:message for="phone" styleClass="errormsg" />
+                
+                <p:outputLabel value="#{msg.email}" for="email" />
+                <p:inputText id="email" label="#{msg.email}" value="#{driverBean.email}" required="true">
+                    <f:attribute name="requiredMessage" value="#{msg.email_required}" />
+                </p:inputText>
+                <p:message for="email" styleClass="errormsg" />
+
+                <p:outputLabel value="#{msg.password}" for="password" />
+                <p:password id="password" label="#{msg.password}" value="#{driverBean.password}" required="true" feedback="true" match="confirmPassword">
+                    <f:attribute name="requiredMessage" value="#{msg.password_required}" />
+                </p:password>
+                <p:message for="password" styleClass="errormsg" />
+
+                <p:outputLabel value="#{msg.confirmPassword}" for="confirmPassword" />
+                <p:password id="confirmPassword" label="#{msg.confirmPassword}" value="#{driverBean.txtPasswordRepeat}" required="true">
+                    <f:attribute name="requiredMessage" value="#{msg.confirmPassword_required}" />
+                </p:password>
+                <p:message for="confirmPassword" styleClass="errormsg" />
+            </h:panelGrid>
+            
+            <h1><h:outputText value="#{msg.vehicle}"/></h1>
+            
+            <h:panelGrid columns="3">                    
+                
+                <p:outputLabel value="#{msg.brand}" for="brand" />
+                <p:inputText id="brand" label="#{msg.brand}" value="#{driverBean.brand}" required="true">
+                    <f:attribute name="requiredMessage" value="#{msg.brand_required}" />
+                </p:inputText>
+                <p:message for="brand" styleClass="errormsg" />
+
+                <p:outputLabel value="#{msg.model}" for="model" />
+                <p:inputText id="model" label="#{msg.model}" value="#{driverBean.model}" required="true">
+                    <f:attribute name="requiredMessage" value="#{msg.model_required}" />
+                </p:inputText>
+                <p:message for="model" styleClass="errormsg" />
+
+                <p:outputLabel value="#{msg.plate}" for="licensePlate" />
+                <p:inputText id="licensePlate" label="#{msg.plate}" value="#{driverBean.licensePlate}" required="true">
+                    <f:attribute name="requiredMessage" value="#{msg.licensePlate_required}" />
+                </p:inputText>
+                <p:message for="licensePlate" styleClass="errormsg" />
+
+            </h:panelGrid>    
+            <br/>         
+            <h2>Primefaces - Captcha</h2>       
+            <p:messages id="msg" />
+            <p:captcha id="captcha"></p:captcha>
+            <br/>         
+            <p:commandButton value="Check" actionListener="#{captcha.check}" ajax="false"></p:commandButton>
+            <p:commandButton id="x" value="Submit" actionListener="#{driverBean.guardar()}"
+                             disabled="#{driverBean.disable}" action="submit" update="@form:x" />
+            <h:commandButton id="myButton" binding="#{driverBean.myButton}" value="validar" actionListener="#{driverBean.validar()}" />
+            <h:message for="myButton" />
+        </h:form>     
+    </h:body>
+</html>

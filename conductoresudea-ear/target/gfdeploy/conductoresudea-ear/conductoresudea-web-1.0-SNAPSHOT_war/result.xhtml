@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+   <h:head>
+        <link href="css/style.css" rel="stylesheet" type="text/css"></link>
+        <title><h:outputText value="#{msg.title}"/></title>
+        <script name="jquery/jquery.js" library="primefaces"></script>
+    </h:head>
+
+    <h:body>
+        <h:form>
+            <h:commandButton action="#{resultsBean.changeLanguage('')}" value="English" image="resources/eeuu.png" />
+            <h:commandButton action="#{resultsBean.changeLanguage('es')}" value="Español" image="resources/spain.png" />
+        </h:form>
+        <h:form prependId="false">
+            <h1>
+                <h:outputText value="#{msg['success.registration']}" />
+            </h1>
+
+            <h:panelGrid columns="2">
+                <h:outputText value="#{msg.firstName}" />
+                <h:outputText value="#{driverBean.firstName}" />
+
+                <h:outputText value="#{msg.lastName}" />
+                <h:outputText value="#{driverBean.lastName}" />
+
+                <h:outputText value="#{msg.idNumber}" />
+                <h:outputText value="#{driverBean.IDNumber}" />
+                
+                <h:outputText value="#{msg.birthDate}" />
+                <h:outputText value="#{driverBean.birthDate}" />
+                
+                <h:outputText value="#{msg.phone}" />
+                <h:outputText value="#{driverBean.phone}" />
+                
+                <h:outputText value="#{msg.email}" />
+                <h:outputText value="#{driverBean.email}" />
+                
+            </h:panelGrid>  
+            
+            <title><h:outputText value="#{msg.vehicle}"/></title>
+            
+            <h:panelGrid columns="2">
+                               
+                <h:outputText value="#{msg.brand}" />
+                <h:outputText value="#{driverBean.brand}" />
+
+                <h:outputText value="#{msg.model}" />
+                <h:outputText value="#{driverBean.model}" />
+
+                <h:outputText value="#{msg.plate}" />
+                <h:outputText value="#{driverBean.licensePlate}" />
+                
+                <p:column headerText="QR Code">
+                    <p:barcode value="#{driverBean.IDNumber} #{driverBean.licensePlate}" type="qr"></p:barcode>
+                </p:column>                
+            </h:panelGrid>
+
+            <h:commandButton value="Back" action="back"/>
+            
+            <p:commandButton value="#{msg.back}" action="index" />
+        </h:form>
+    </h:body>
+</html>
